@@ -1,5 +1,7 @@
 // variable for .overview div in intro section
 const overview = document.querySelector(".overview");
+// variable for .repo-list ul in repos section
+const repoList = document.querySelector(".repo-list");
 // Github username
 const username = "madelinekreiff";
 
@@ -10,7 +12,7 @@ const getProfileInfo = async function () {
     displayProfileInfo(data);
 };
 
-// function to use the data fetched from getInfo() to display profile information
+// function to display profile information
 const displayProfileInfo = function (data) {
     let div = document.createElement("div");
     div.classList.add("user-info");
@@ -27,7 +29,25 @@ const displayProfileInfo = function (data) {
     overview.append(div);
 };
 
-
-
-
 getProfileInfo();
+
+// async function to fetch GitHub repos
+const getRepos = async function () {
+    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+    const data = await res.json();
+    displayRepos(data);
+
+    // console.log(data);
+};
+
+// function to display repo information
+const displayRepos = function (repos) {
+    for (let repo of repos) {
+        let li = document.createElement("li");
+        li.classList.add("repo");
+        li.innerHTML = `<h3>${repo.name}</h3>`;
+        repoList.append(li);
+    }
+};
+
+getRepos();
