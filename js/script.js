@@ -6,6 +6,10 @@ const repoSection = document.querySelector(".repos");
 const repoList = document.querySelector(".repo-list");
 // select .repo-data section
 const repoData = document.querySelector(".repo-data");
+// select .view-repos "Back to Repo Gallery" button
+const backToGalleryButton = document.querySelector(".view-repos");
+// select .filter-repos "Search by name" input field
+const filterInput = document.querySelector(".filter-repos");
 // Github username
 const username = "madelinekreiff";
 
@@ -40,8 +44,6 @@ const getRepos = async function () {
     const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     const repos = await res.json();
     displayRepos(repos);
-
-    // console.log(data);
 };
 
 // function to display repo names
@@ -90,4 +92,12 @@ const displayRepoInfo = function (repoInfo, languages) {
     repoData.append(div);
     repoData.classList.remove("hide");
     repoSection.classList.add("hide");
+    backToGalleryButton.remove("hide");
 };
+
+// event listener for clicking the "Back to Repo Galler" button
+backToGalleryButton.addEventListener("click", function () {
+    repoSection.classList.remove("hide");
+    repoData.classList.add("hide");
+    backToGalleryButton.add("hide");
+});
