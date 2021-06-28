@@ -1,7 +1,11 @@
-// variable for .overview div in intro section
+// select .overview div in intro section
 const overview = document.querySelector(".overview");
-// variable for .repo-list ul in repos section
+// select .repos section
+const repoSection = document.querySelector(".repos");
+// select .repo-list ul in repos section
 const repoList = document.querySelector(".repo-list");
+// select .repo-data section
+const repoData = document.querySelector(".repo-data");
 // Github username
 const username = "madelinekreiff";
 
@@ -51,3 +55,10 @@ const displayRepos = function (repos) {
 };
 
 getRepos();
+
+// event listener for clicking on different repos in repoList
+repoList.addEventListener("click", function(e) {
+    if (e.target.matches("h3")) {
+        let repoName = e.target.innerText;
+    }
+});
