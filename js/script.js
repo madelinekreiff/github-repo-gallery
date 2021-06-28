@@ -4,14 +4,14 @@ const overview = document.querySelector(".overview");
 const username = "madelinekreiff";
 
 // async function to fetch GitHub profile information using the GitHub API
-const getInfo = async function () {
+const getProfileInfo = async function () {
     const res = await fetch(`https://api.github.com/users/${username}`);
     const data = await res.json();
-    displayInfo(data);
+    displayProfileInfo(data);
 };
 
 // function to use the data fetched from getInfo() to display profile information
-const displayInfo = function (data) {
+const displayProfileInfo = function (data) {
     let div = document.createElement("div");
     div.classList.add("user-info");
     div.innerHTML =
@@ -30,4 +30,4 @@ const displayInfo = function (data) {
 
 
 
-getInfo();
+getProfileInfo();
