@@ -46,8 +46,9 @@ const getRepos = async function () {
     displayRepos(repos);
 };
 
-// function to display repo names
+// function to display all repo names
 const displayRepos = function (repos) {
+    filterInput.classList.remove("hide");
     for (let repo of repos) {
         let li = document.createElement("li");
         li.classList.add("repo");
@@ -66,7 +67,7 @@ repoList.addEventListener("click", function(e) {
     }
 });
 
-// async function to fetch GitHub repo info
+// async function to fetch individual repo info
 const getRepoInfo = async function (repoName) {
     const fetchRepo = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await fetchRepo.json();
@@ -79,7 +80,7 @@ const getRepoInfo = async function (repoName) {
     displayRepoInfo(repoInfo, languages);
 };
 
-// function to display repo info
+// function to display individual repo info
 const displayRepoInfo = function (repoInfo, languages) {
     repoData.innerHTML = "";
     const div = document.createElement("div");
@@ -92,12 +93,12 @@ const displayRepoInfo = function (repoInfo, languages) {
     repoData.append(div);
     repoData.classList.remove("hide");
     repoSection.classList.add("hide");
-    backToGalleryButton.remove("hide");
+    backToGalleryButton.classList.remove("hide");
 };
 
 // event listener for clicking the "Back to Repo Galler" button
 backToGalleryButton.addEventListener("click", function () {
     repoSection.classList.remove("hide");
     repoData.classList.add("hide");
-    backToGalleryButton.add("hide");
+    backToGalleryButton.classList.add("hide");
 });
