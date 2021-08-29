@@ -96,7 +96,7 @@ const displayRepoInfo = function (repoInfo, languages) {
     backToGalleryButton.classList.remove("hide");
 };
 
-// event listener for clicking the "Back to Repo Galler" button
+// event listener for clicking the "Back to Repo Gallery" button
 backToGalleryButton.addEventListener("click", function () {
     repoSection.classList.remove("hide");
     repoData.classList.add("hide");
